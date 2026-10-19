@@ -7,6 +7,7 @@
  * @return {Object[]}
  */
 
+
 function transformStateWithClones(state, actions) {
   let currentState = { ...state };
   const stateHistory = [];
@@ -31,6 +32,9 @@ function transformStateWithClones(state, actions) {
           delete currentState[key];
         }
         break;
+
+      default:
+        throw new Error(`Unknown action type: ${action.type}`);
     }
 
     stateHistory.push({ ...currentState });
@@ -38,6 +42,5 @@ function transformStateWithClones(state, actions) {
 
   return stateHistory;
 }
-
 
 module.exports = transformStateWithClones;
